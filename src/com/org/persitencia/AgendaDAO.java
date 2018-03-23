@@ -213,7 +213,7 @@ public class AgendaDAO {
 		MongoCollection<Document> collection = db.getCollection("agenda");
 
 		
-		FindIterable<Document> findIterable = collection.find(Filters.eq("agendaMembro", Document.parse("{ membro: '" + membro.getId() + "'}")));
+		FindIterable<Document> findIterable = collection.find(Filters.eq("agendaMembro", Document.parse("{ membro: '" + membro.getId() + "',  agenda: \"\", tipo: \"ADMINISTRADOR\"}")));
 		
 		while(findIterable.iterator().hasNext()) {
 		

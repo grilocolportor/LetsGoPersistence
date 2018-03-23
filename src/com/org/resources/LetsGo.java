@@ -35,11 +35,11 @@ import com.org.persitencia.MembroDAO;
 public class LetsGo {
 	
 	@Path("/start")
-	@GET
+	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response start() {
 		
-		Membro membro = new Membro("5aa9813cc7d7412b985c9851");
+		Membro membro = new Membro("5aaace8a35e96f2554871abc");
 		AgendaDAO.getAgendaPorMembro(membro);
 		
 		return

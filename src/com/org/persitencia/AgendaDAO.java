@@ -171,7 +171,7 @@ public class AgendaDAO {
 
 	}
 
-	public static void addMembroToAgenda(AgendaMembro membro) {
+	/*public static void addMembroToAgenda(AgendaMembro membro) {
 		mongo = new MongoClient("localhost", 27017);
 		MongoDatabase db = mongo.getDatabase("LetsGo");
 		MongoCollection<Document> collection = db.getCollection("agenda");
@@ -189,7 +189,7 @@ public class AgendaDAO {
 
 		mongo.close();
 
-	}
+	}*/
 
 	public static void addEventosOnAgenda(Eventos evento) {
 
@@ -206,15 +206,16 @@ public class AgendaDAO {
 
 	}
 	
-	public static void getAgendaPorMembro(Membro membro) {
+	public static void getAgendaPorMembro(AgendaMembro membro) {
 		
 		mongo = new MongoClient("localhost", 27017);
 		MongoDatabase db = mongo.getDatabase("LetsGo");
 		MongoCollection<Document> collection = db.getCollection("agenda");
 
 		
-		FindIterable<Document> findIterable = collection.find(Filters.eq("agendaMembro", Document.parse("{ membro: '" + membro.getId() + "',  agenda: \"\", tipo: \"ADMINISTRADOR\"}")));
-		
+		FindIterable<Document> findIterable = collection.find(Filters.eq("agendaMembro", 
+				Document.parse("{ membro: " + membro.getId() + "'")));
+	
 		while(findIterable.iterator().hasNext()) {
 		
 			System.out.println(findIterable.toString());

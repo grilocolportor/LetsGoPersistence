@@ -9,32 +9,28 @@ public class AgendaMembro  {
 	
 	private String id;
 	private String membro;
-	private String agenda;
 	private String tipo;
 	private Membro oMembro;
 	
 	public AgendaMembro() {}
 	
-	public AgendaMembro(String membro, String tipo, String agenda) {
+	public AgendaMembro(String membro, String tipo) {
 		super();
 		this.membro = membro;
 		this.tipo = tipo;
-		this.agenda = agenda;
 	}
 	
-	public AgendaMembro(String id, String membro, String agenda, String tipo) {
+	public AgendaMembro(String id, String membro, String tipo) {
 		super();
 		this.id = id;
 		this.membro = membro;
-		this.agenda = agenda;
 		this.tipo = tipo;
 	}
 	
-	public AgendaMembro(String id, String membro, String agenda, String tipo, Membro oMembro) {
+	public AgendaMembro(String id, String membro, String tipo, Membro oMembro) {
 		super();
 		this.id = id;
 		this.membro = membro;
-		this.agenda = agenda;
 		this.tipo = tipo;
 		this.oMembro = oMembro;
 	}
@@ -53,14 +49,6 @@ public class AgendaMembro  {
 
 	public void setMembro(String membro) {
 		this.membro = membro;
-	}
-
-	public String getAgenda() {
-		return agenda;
-	}
-
-	public void setAgenda(String agenda) {
-		this.agenda = agenda;
 	}
 
 	public String getId() {

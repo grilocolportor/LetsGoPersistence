@@ -224,6 +224,36 @@ public class LetsGo {
 				.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").allow("OPTIONS").build();
 	}
 	
+	@Path("/agendaPorMembros")
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response agendaPorMembros(Membro membro) {
+		
+		
+		//List<Agenda> a = new ArrayList<>();
+		AgendaMembro am = new AgendaMembro();
+		am.setId(membro.getId());
+		
+		AgendaDAO.getAgendaPorMembro(am);
+		
+		//Agendas agendas = new Agendas( a);
+		
+		Gson gson = new Gson();
+		
+		Type type = new TypeToken<List<Agendas>>() {}.getType();
+	//	String retorno =   gson.toJson( agendas) ;
+		
+//		System.out.println(retorno);
+		
+		
+		
+		
+		return Response.status(200).entity("funciounou").header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").allow("OPTIONS").build();
+		
+	}
+	
 	//---------------------------------Eventos-----------------------------------------------
 	
 	
@@ -258,7 +288,7 @@ public class LetsGo {
 	//--------------------------------- Agendas-----------------------------------------------
 	
 	@Path("/addagenda")
-	@GET
+	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response addAgenda(Agenda agenda) {

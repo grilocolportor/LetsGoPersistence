@@ -15,6 +15,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.bson.Document;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.org.model.Eventos;
@@ -37,9 +39,9 @@ public class LetsGo {
 	@Path("/start")
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response start() {
+	public Response start(Membro membro) {
 		
-		Membro membro = new Membro("5aaace8a35e96f2554871abc");
+		//Membro membro = new Membro("5abe7f060158a71af07edb02");
 		AgendaDAO.getAgendaPorMembro(membro);
 		
 		return
@@ -112,20 +114,28 @@ public class LetsGo {
 		return getMembro(membro);
 	}
 	
-/*	@Path("getagendaspormembro")
-	@GET
+	@Path("/getagendaspormembro")
+	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public static Response getAgendaPorMembro(Membro membro){
 		
+		List<Agenda> la = new ArrayList<>();
 		
-		Membro membro = new Membro();
+		la = AgendaDAO.getAgendaPorMembro(membro);
 		
+		Agendas agendas = new Agendas(la);
+		
+		Gson gson = new Gson();
+		
+		
+		
+		String retorno = gson.toJson(agendas);
 		
 		return Response.status(200).entity(retorno).header("Access-Control-Allow-Origin", "*")
 				.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").allow("OPTIONS").build();
 		
-	}*/
+	}
 	
 	@Path("getmembrofiltro")
 	@GET
@@ -235,7 +245,7 @@ public class LetsGo {
 		AgendaMembro am = new AgendaMembro();
 		am.setId(membro.getId());
 		
-		AgendaDAO.getAgendaPorMembro(am);
+		//AgendaDAO.getAgendaPorMembro(am);
 		
 		//Agendas agendas = new Agendas( a);
 		
@@ -408,7 +418,7 @@ public class LetsGo {
 	}
 	
 	
-	@Path("addmembroagenda")
+	/*@Path("addmembroagenda")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -428,14 +438,14 @@ public class LetsGo {
 		
 		List<Agenda> a = new ArrayList<>();
 		a = AgendaDAO.get(agenda);
-		
+		s
 		Gson gson = new Gson();
 		String retorno = gson.toJson(a.get(0));
 		
 		return Response.status(200).entity(retorno).header("Access-Control-Allow-Origin", "*")
 				.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").allow("OPTIONS").build();
 		
-	}
+	}*/
 	
 	//--------------------EVENTOS----------------
 	

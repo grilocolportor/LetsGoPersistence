@@ -206,20 +206,31 @@ public class AgendaDAO {
 
 	}
 	
-	public static void getAgendaPorMembro(AgendaMembro membro) {
+	public static List<Agenda> getAgendaPorMembro(Membro membro) {
 		
 		mongo = new MongoClient("localhost", 27017);
 		MongoDatabase db = mongo.getDatabase("LetsGo");
 		MongoCollection<Document> collection = db.getCollection("agenda");
-
 		
-		FindIterable<Document> findIterable = collection.find(Filters.eq("agendaMembro", 
-				Document.parse("{ membro: " + membro.getId() + "'")));
+		
+		FindIterable<Document> findIterable = collection.find(Document.parse("{'agendaMembro.membro' : '5abe7f060158a71af07edb02'}")); //, " + 
+		//Filters.or(Document.parse("{tipo: 'ADMINISTRADOR'}"), Document.parse("{tipo: 'SEGUIDOR'}")))));
 	
-		while(findIterable.iterator().hasNext()) {
+		///while(findIterable.iterator().hasNext()) {
 		
-			System.out.println(findIterable.toString());
+		List<Agenda> la = new ArrayList<>();
+		
+		Gson gson = new Gson();
+		
+		for(Document d : findIterable) {
+			System.out.println(d.toString());
+			Agenda a = gson.fromJson(d.toJson(), Agenda.class);
+			la.add(a);
 		}
+			
+		
+		return la;
+		//}
 	}
 	
 	public static void getAgendaPorMembroSpark(Membro membro){

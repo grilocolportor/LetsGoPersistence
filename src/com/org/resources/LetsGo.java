@@ -96,8 +96,10 @@ public class LetsGo {
 			membros.setMembros(MembroDAO.get(membro));
 			
 			
-			String retorno = "{ \"membro\" :"  +  gson.toJson(membros.getMembros().get(0)) + "}";
+			//String retorno = "{ \"membro\" :"  +  gson.toJson(membros.getMembros().get(0)) + "}";
 
+			String retorno = gson.toJson(membros);
+			
 			System.out.println(retorno);
 
 			return Response.status(200).entity(retorno).header("Access-Control-Allow-Origin", "*")
@@ -127,8 +129,6 @@ public class LetsGo {
 		Agendas agendas = new Agendas(la);
 		
 		Gson gson = new Gson();
-		
-		
 		
 		String retorno = gson.toJson(agendas);
 		

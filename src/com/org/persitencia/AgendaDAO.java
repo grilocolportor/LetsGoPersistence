@@ -213,10 +213,8 @@ public class AgendaDAO {
 		MongoCollection<Document> collection = db.getCollection("agenda");
 		
 		
-		FindIterable<Document> findIterable = collection.find(Document.parse("{'agendaMembro.membro' : '5abe7f060158a71af07edb02'}")); //, " + 
-		//Filters.or(Document.parse("{tipo: 'ADMINISTRADOR'}"), Document.parse("{tipo: 'SEGUIDOR'}")))));
-	
-		///while(findIterable.iterator().hasNext()) {
+		FindIterable<Document> findIterable = collection.find(Document.parse("{'agendaMembro.membro' : '" + membro.getId() + "'}")); //, " + 
+		
 		
 		List<Agenda> la = new ArrayList<>();
 		
